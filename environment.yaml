@@ -1,0 +1,17 @@
+name: contact-graspnet
+channels:
+  - conda-forge
+  - anaconda
+  - defaults
+dependencies:
+  - python=3.9
+  - cudatoolkit==11.8
+  - cudnn
+  - pip 
+  - pip:
+    - tensorflow==2.5 # requires python<=3.9
+    - opencv-python-headless
+    - pyyaml
+    - pyrender
+    - tqdm
+    - mayavi

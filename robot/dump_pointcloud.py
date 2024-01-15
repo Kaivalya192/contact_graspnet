@@ -1,3 +1,5 @@
+"""script to generate input (.npz file) for contact_graspnet from a zed2i camera. also includes code to manually segment object or region of interest."""
+
 from airo_camera_toolkit.cameras.zed.zed2i import Zed2i
 from airo_camera_toolkit.utils.image_converter import ImageConverter
 from airo_camera_toolkit.utils.annotation_tool import Annotation, get_manual_annotations
@@ -7,7 +9,7 @@ import open3d as o3d
 import cv2
 
 camera = Zed2i(resolution=Zed2i.RESOLUTION_720,depth_mode=Zed2i.NEURAL_DEPTH_MODE)
-camera.runtime_params.texture_confidence_threshold = 95
+camera.runtime_params.texture_confidence_threshold = 97
 camera.runtime_params.confidence_threshold = 90
 
 rgb = camera.get_rgb_image()
@@ -64,7 +66,7 @@ segmap[obj_map == 1 ] = 1
 # can also provide pc, but that cannot be combined w/ segmap
 
 
-
+# use appropriate keys for contact graspnet
 np.savez('scene.npz',rgb=rgb,depth=depth_map,K=intrinsics,seg=segmap)
 
 

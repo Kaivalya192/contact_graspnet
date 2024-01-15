@@ -67,7 +67,7 @@ def segmap_and_depth_inference():
         raise ValueError("K not in input file")
     if not "depth" in input_file:
         raise ValueError("depth not in input file")
-    if not "seg" in input_file:
+    if not "segmap" in input_file:
         raise ValueError("segmap not in input file")
     
     print('loading input data')

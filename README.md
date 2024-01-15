@@ -1,6 +1,8 @@
-# Contact-GraspNet  
+# Dockerized Contact-GraspNet  
+original readme below. All credits to the authors.
 
-This fork provides a docker container to facilitate the integration of the contact-graspnet in applications, without having to worry about it's (narrow) dependencies. 
+
+This fork provides a minimal effort docker container to facilitate the integration of the contact-graspnet in applications, without having to worry about it's (narrow) dependencies. 
 
 Make sure to make yourself familiar with the original repo first. I recommend running inference on the test examples manually.  You can use this updated [conda env file](./environment.yaml) and follow the original Readme.
 
@@ -14,17 +16,22 @@ The steps to obtain grasp proposals are:
 2. send a request to the webserver endpoint (`localhost:5000/` endpoint)
 3. load the grasp proposals and their scores from the resulting npz file.
 
-See `robot/flask_grasping_example.py` for an example on how to do this.
+The grasp proposals are expressed in the base frame of a panda gripper, make sure to transform them to the TCP frame (11cm in Z direction) or to your grippers base frame. (only aspect that matters is distance between fingertips and gripper base).
+
+See `robot/grasping_using_docker.py` for an example on how to do use the webserver. See `robot/dump_pointcloud.py` and `robot/grasp.py` for 
 
 ## Starting the docker container 
 
 Make sure you have installed the nvidia container toolkit: https://github.com/NVIDIA/nvidia-container-toolkit.
 
-Use the following command from a terminal. Adapt the mount location to the directory where you will save/load the images.
+Run the following command `xhost +local:` in your terminal.
+
+Use the following command from the terminal. Adapt the mount location to the directory where you will save/load the images.
 `docker run --gpus all  -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix  --network=host -v "$(pwd)"/flask_files:/contact_graspnet/flask_files tlpss/contact-graspnet-flask`
 
 Note that this is by no means safe for production (and even then, the original license does not allow commercial use anyways)
 
+You can now access the webserver from your python script on the `localhost:5000/` endpoint after you have saved your inputs in the the `.npz` file.
 ## Building the container 
 
 - download the checkpoint (see original repo)

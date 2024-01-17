@@ -26,6 +26,8 @@ The steps to obtain grasp proposals are:
 The grasp proposals are expressed in the base frame of a panda gripper, make sure to transform them to the TCP frame (11cm in Z direction) or to your grippers base frame. (only aspect that matters is distance between fingertips and gripper base).
 
 See `robot/grasping_using_docker.py` for an example on how to do use the webserver. See `robot/dump_pointcloud.py` and `robot/grasp.py` for code to manually create an input file and to execute the best grasp.
+These scripts make use of [airo-mono](https://github.com/airo-ugent/airo-mono) to quickly develop a robotic application. Make sure to install it if you want to use the scripts.
+
 
 Example video can be seen [here](examples/contact-graspnet-dockerized.mp4).
 

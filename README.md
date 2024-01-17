@@ -1,10 +1,13 @@
 # Dockerized Contact-GraspNet  
 original readme below. All credits to the authors.
 
-
 This fork provides a (minimal-effort) docker image to facilitate integration of the contact-graspnet grasp predictions. The codebase requires tensorflow 2.5, which makes it hard to integrate directly in your python projects, hence the docker image.
 
 Make sure to make yourself familiar with the original repo first. I recommend running inference on the test examples manually.  You can use this updated [conda env file](./environment.yaml) and follow the original Readme.
+
+Integration example of the dockerized grasp predictor (code available [here](robot/grasping_using_docker.py)):
+
+https://github.com/tlpss/contact_graspnet/assets/37955681/2236c3f0-8157-4cf0-a167-cc2ecae7a4df
 
 
 ## Using the docker image 

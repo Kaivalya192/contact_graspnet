@@ -1,6 +1,6 @@
 FROM nvidia/cuda:11.8.0-devel-ubuntu22.04
 
-RUN apt-get update && apt-get install -y  wget
+RUN apt-get update && apt-get install -y  wget python3-pyqt5
 RUN apt-get install -y libxrender1 mesa-common-dev
 
 # Install miniconda
@@ -30,8 +30,12 @@ RUN chmod +x compile_pointnet_tfops.sh && ./compile_pointnet_tfops.sh
 # copy source code 
 COPY contact_graspnet/ contact_graspnet/
 
+# Gripper settings
+ADD gripper_control_points /contact_graspnet/gripper_control_points
+ADD gripper_models /contact_graspnet/gripper_models
+
 # install flask and expose port
-RUN pip install flask
+RUN pip install flask pyside2
 EXPOSE 5000
 ENTRYPOINT [ "/bin/bash", "-l", "-c" ]
 # start flask server by default

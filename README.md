@@ -30,23 +30,18 @@ These scripts make use of [airo-mono](https://github.com/airo-ugent/airo-mono) t
 
 
 Example video can be seen [here](examples/contact-graspnet-dockerized.mp4).
-
-## Starting the docker container 
-
-Make sure you have installed the nvidia container toolkit: https://github.com/NVIDIA/nvidia-container-toolkit.
-
-Run the following command `xhost +local:` in your terminal.
-
-Use the following command in the terminal to start the container. Adapt the mount location to the directory where you will save/load the images.
-`docker run --gpus all  -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix  --network=host -v "$(pwd)"/flask_files:/contact_graspnet/flask_files tlpss/contact-graspnet-flask`
-
-Note that this is by no means safe for production (and even then, the original license does not allow commercial use anyways)
-
-You can now access the webserver from your python script on the `localhost:5000/` endpoint after you have saved your inputs in the the `.npz` file.
 ## Building the container 
 
 - download the checkpoint (see original repo)
-- `docker build . -f docker/Dockerfile -t contact-graspnet-flask`
+- `docker build . -f docker/Dockerfile -t contact-graspnet`
+
+## Starting the docker container 
+1) For Opening the port run `bash open_port_container.sh`
+2) For Visualizing support results on docker run `bash run_container.sh`
+Note that this is by no means safe for production (and even then, the original license does not allow commercial use anyways)
+
+You can now access the webserver from your python script on the `localhost:5000/` endpoint after you have saved your inputs in the the `.npz` file.
+
 
 ---
 original readme

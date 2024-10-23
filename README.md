@@ -38,6 +38,7 @@ Example video can be seen [here](examples/contact-graspnet-dockerized.mp4).
 ## Starting the docker container 
 1) For Opening the port run `bash open_port_container.sh`
 2) For Visualizing support results on docker run `bash run_container.sh`
+
 Note that this is by no means safe for production (and even then, the original license does not allow commercial use anyways)
 
 You can now access the webserver from your python script on the `localhost:5000/` endpoint after you have saved your inputs in the the `.npz` file.
